@@ -12,7 +12,7 @@
     <artifactId>securitycours</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>securitycours</name>
-    <description>securitycours</description>
+    <description>securityсours</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -24,6 +24,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
         <dependency>
