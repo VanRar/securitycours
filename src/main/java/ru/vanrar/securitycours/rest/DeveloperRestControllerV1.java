@@ -1,5 +1,6 @@
 package ru.vanrar.securitycours.rest;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.vanrar.securitycours.model.Developer;
 
@@ -24,6 +25,7 @@ public class DeveloperRestControllerV1 {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('developers:read')")
     public Developer getById(@PathVariable Long id){
         return DEVELOPERS.stream().filter(developer -> developer.getId().equals(id))
                 .findFirst()
@@ -31,13 +33,15 @@ public class DeveloperRestControllerV1 {
     }
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('developers:write')")
     public Developer create(@RequestBody Developer developer){
         this.DEVELOPERS.add(developer);
         return developer;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(Long id){
+    @PreAuthorize("hasAnyAuthority('developers:write')")
+    public void deleteById(@PathVariable Long id){
         this.DEVELOPERS.removeIf(developer -> developer.getId().equals(id));
 
     }
